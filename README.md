@@ -27,6 +27,7 @@
 | `/check` | 跨篇检查 | 扫描所有篇章找冲突 |
 | `/deconstruct` | 拆文分析 | 拆解别人的文章，提取可迁移技法 |
 | `/expand` | 场景扩写 | 把场景锚点展开为完整叙事 |
+| `/illustrate` | 插图提示词 | 为场景生成"手机随手拍"风格的图片提示词 |
 
 ## 文件结构
 
@@ -37,7 +38,8 @@ engineered-writing/
 │   ├── voice-calibration.md        # 语感校准（余华/史铁生/莫言三档）
 │   ├── pov-discipline.md           # 视角纪律（严格外部视角）
 │   ├── anti-ai-checklist.md        # 去AI味检查清单（叙事专用）
-│   └── deconstruct-template.md     # 拆文分析模板
+│   ├── deconstruct-template.md     # 拆文分析模板
+│   └── illustration-style.md       # 插图风格指南（手机随手拍美学）
 ├── scripts/
 │   └── consistency-check.sh        # 一致性检查脚本（可独立运行）
 ├── README.md                       # 本文件
