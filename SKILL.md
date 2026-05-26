@@ -15,7 +15,7 @@ platforms: claude-code, cursor, windsurf, cline, chatgpt, generic
 ## 上下文加载
 
 当工作目录下存在以下文件时，自动识别为写作项目并加载上下文：
-- `CONTEXT.md`（铁律、术语、视角规则）
+- `CONTEXT.md`（铁律、术语、文风模式、视角模式选择）
 - `人物小传.md`（人物设定）
 - `*_写作提示词.md`（当前篇章的写作指引）
 - `*_初稿.md`（已有篇章）
@@ -33,13 +33,21 @@ platforms: claude-code, cursor, windsurf, cline, chatgpt, generic
 
 1. 确认当前篇章和需求范围
 2. 读取已有 CONTEXT.md 和人物小传，建立已知设定边界
-3. 追问用户以厘清新设定（最少必要问题，不问能从已有文档推断的）：
+3. **确定文风模式**（如 CONTEXT.md 中尚未标注）：
+   - 展示 [文风模式](references/voice-modes.md) 的五种选项，请用户选择
+   - 用户不选则默认模式 1（余华式冷叙事）
+   - 将选定模式写入 CONTEXT.md 铁律区
+4. **确定视角模式**（如 CONTEXT.md 中尚未标注）：
+   - 展示 [视角模式](references/pov-modes.md) 的五种选项，请用户选择
+   - 用户不选则默认模式 1（严格外部视角）
+   - 将选定模式写入 CONTEXT.md 铁律区
+5. 追问用户以厘清新设定（最少必要问题，不问能从已有文档推断的）：
    - 人物：姓名、年龄、籍贯、职业、与主角关系、在楼里的位置
    - 时间线：事件发生的绝对时间、与已有事件的先后关系
    - 场景锚点：关键场景的物理环境、在场人物、感官细节
    - 铁律：本篇是否有额外禁区
-4. 输出结构化文档（匹配已有格式：人物小传条目 / CONTEXT 补充段 / 写作提示词）
-5. 交叉检查：新设定与已有设定是否冲突，冲突则标注并请用户裁决
+6. 输出结构化文档（匹配已有格式：人物小传条目 / CONTEXT 补充段 / 写作提示词）
+7. 交叉检查：新设定与已有设定是否冲突，冲突则标注并请用户裁决
 
 ### B. 写作模式（Draft）
 
@@ -48,15 +56,15 @@ platforms: claude-code, cursor, windsurf, cline, chatgpt, generic
 **工作流：**
 
 1. **写前回查**——自动读取并提取本节相关约束：
-   - CONTEXT.md：铁律、黑名单写法、视角纪律、语感参照系
+   - CONTEXT.md：铁律、黑名单写法、视角模式、语感参照系
    - 人物小传：本节出场人物的当前状态、已知信息边界
    - 写作提示词：本节的场景设计、情绪走向、节奏要求
    - 前文（如有）：上一节结尾的状态、未关闭的线索
    - 修订记录：已修复的冲突点（避免重蹈）
 
 2. **写作**——按以下规则输出初稿：
-   - 语感：参照 `references/voice-calibration.md`
-   - 视角：参照 `references/pov-discipline.md`
+   - 语感：参照 `references/voice-modes.md` 中 CONTEXT.md 选定的模式
+   - 视角：参照 `references/pov-modes.md` 中 CONTEXT.md 选定的模式
    - 节奏：段落归拢，逗号连接同一时刻的动作，只在真正的节奏断点换段
    - 对话：不加引号，"我说""他说"领起，黑话/脏话/方言原样保留
    - 回望句：全篇预算十处，每一句都贵，不轻易使用
@@ -181,12 +189,11 @@ platforms: claude-code, cursor, windsurf, cline, chatgpt, generic
 
 ### 绝对禁止
 
-- 写叙述者当时不知道的事（视角越界）
-- 猜测任何人的内心（"她大概是……""他其实……"）
+- 视角越界（违反 CONTEXT.md 中选定的视角模式规则）
 - 给男女主的关系命名（恋人、朋友、姐弟、知己）
 - 让任何人被"救赎"或"觉醒"
 - 俯视、美化、猎奇底层生活
-- 预言式回望（"这是最后一次""我那时还不知道"）
+- 预言式回望（"这是最后一次""我那时还不知道"）——模式 4 全知视角除外
 - 逐句分段（每句话独占一段）
 - 段内句号过密（同一瞬间的动作用逗号连接）
 
@@ -194,7 +201,7 @@ platforms: claude-code, cursor, windsurf, cline, chatgpt, generic
 
 | 检查项 | 通过标准 |
 |--------|----------|
-| 视角 | 全文无"她想""他觉得""她大概"等越界句 |
+| 视角 | 全文无违反 CONTEXT.md 选定视角模式的越界句 |
 | 铁律 | 无救赎、无命名关系、无俯视、无预言回望 |
 | 段落 | 段落:句子比远低于 1:1，同场景句子已归拢 |
 | 句号 | 同一瞬间连续短动作之间用逗号而非句号 |
@@ -213,8 +220,10 @@ platforms: claude-code, cursor, windsurf, cline, chatgpt, generic
 
 ### 参考文件
 
-- [语感校准](references/voice-calibration.md)：余华/史铁生/莫言的具体规则和边界
-- [视角纪律](references/pov-discipline.md)：严格外部视角的详细规则和常见违规示例
+- [文风模式](references/voice-modes.md)：五种可选文风模式，含选择指南
+- [语感校准](references/voice-calibration.md)：模式 1（余华式冷叙事）的详细规则和子模式边界
+- [视角模式](references/pov-modes.md)：五种可选视角模式，含选择指南
+- [视角纪律](references/pov-discipline.md)：模式 1（严格外部视角）的详细规则和常见违规示例
 - [去AI味清单](references/anti-ai-checklist.md)：叙事文体专用的 AI 痕迹检测和修复
 - [拆文模板](references/deconstruct-template.md)：拆文分析的维度和评估框架
 - [插图风格指南](references/illustration-style.md)："手机随手拍"美学的详细规则和示例

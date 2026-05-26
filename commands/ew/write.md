@@ -14,7 +14,7 @@ argument-hint: [第X节 或 续写描述]
 ### 1. 写前回查（必须先做）
 
 自动读取并提取本节相关约束：
-- `CONTEXT.md`：铁律、黑名单写法、视角纪律、语感参照系
+- `CONTEXT.md`：铁律、黑名单写法、文风模式、视角模式、语感参照系
 - `人物小传.md`：本节出场人物的当前状态、已知信息边界
 - `*_写作提示词.md`：本节的场景设计、情绪走向、节奏要求
 - 前文（如有）：上一节结尾的状态、未关闭的线索
@@ -23,8 +23,8 @@ argument-hint: [第X节 或 续写描述]
 ### 2. 写作
 
 按以下规则输出初稿：
-- 语感：参照 `references/voice-calibration.md`
-- 视角：参照 `references/pov-discipline.md`
+- 语感：参照 `references/voice-modes.md` 中 CONTEXT.md 选定的模式
+- 视角：参照 `references/pov-modes.md` 中 CONTEXT.md 选定的模式
 - 节奏：段落归拢，逗号连接同一时刻的动作，只在真正的节奏断点换段
 - 对话：不加引号，"我说""他说"领起，黑话/脏话/方言原样保留
 - 回望句：全篇预算十处，每一句都贵

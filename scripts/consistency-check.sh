@@ -137,13 +137,15 @@ else
 fi
 
 # ========== 6. 视角越界扫描 ==========
-print_header "6. 视角越界扫描"
+# 注意：此检测仅覆盖模式 1/2（严格外部/内省第一人称）的常见越界。
+# 模式 3/4/5 需根据 CONTEXT.md 中选定的模式规则人工核查。
+print_header "6. 视角越界扫描（模式 1/2 通用检测）"
 
 POV_VIOLATIONS="大概是|其实是|心里想|后来才明白|那时一定|是为了"
 matches=$(grep -nE "$POV_VIOLATIONS" $DRAFTS 2>/dev/null)
 if [ -n "$matches" ]; then
     echo "$matches" | head -20 | sed 's/^/  /'
-    print_warn "发现可能的视角越界，需人工核查"
+    print_warn "发现可能的视角越界，需人工核查（并确认 CONTEXT.md 中的视角模式）"
 else
     print_ok "未发现明显越界"
 fi
@@ -190,6 +192,6 @@ fi
 print_header "扫描完成"
 echo "提示："
 echo "  - 警告项需人工核查上下文，不是所有匹配都是问题"
-echo "  - 视角越界、铁律违反如确认，参照 references/pov-discipline.md 修订"
+echo "  - 视角越界、铁律违反如确认，参照 references/pov-modes.md 和 CONTEXT.md 中的视角模式修订"
 echo "  - 段落:句号比偏高的，参照 references/anti-ai-checklist.md 第1节修订"
 echo "  - 跨篇冲突的修复格式参照 修订记录.md"

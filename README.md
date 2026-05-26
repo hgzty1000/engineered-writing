@@ -50,8 +50,10 @@ engineered-writing/
 │       ├── expand.md
 │       └── illustrate.md
 ├── references/
-│   ├── voice-calibration.md        # 语感校准（余华/史铁生/莫言三档）
-│   ├── pov-discipline.md           # 视角纪律（严格外部视角）
+│   ├── voice-modes.md              # 文风模式（五种可选，脚手架阶段选定）
+│   ├── voice-calibration.md        # 语感校准（模式 1 余华式冷叙事详细规则）
+│   ├── pov-modes.md                # 视角模式（五种可选，脚手架阶段选定）
+│   ├── pov-discipline.md           # 视角纪律（模式 1 严格外部视角的详细规则）
 │   ├── anti-ai-checklist.md        # 去AI味检查清单（叙事专用）
 │   ├── deconstruct-template.md     # 拆文分析模板
 │   └── illustration-style.md       # 插图风格指南（手机随手拍美学）
@@ -136,8 +138,8 @@ bash scripts/consistency-check.sh /path/to/your/writing/project
 
 这套规则是为余华式叙事散文设计的。如果你的项目风格不同：
 
-1. 修改 `references/voice-calibration.md` 里的语感参照系
-2. 修改 `references/pov-discipline.md` 里的视角规则（比如你的项目允许全知视角）
+1. 选择文风模式：脚手架阶段从五种模式中选一（`references/voice-modes.md`），或直接修改 `references/voice-calibration.md` 定制模式 1
+2. 选择视角模式：脚手架阶段从五种模式中选一（`references/pov-modes.md`），或直接修改 `references/pov-discipline.md` 定制模式 1
 3. 修改 `references/anti-ai-checklist.md` 里的铁律部分（比如你的项目允许比喻）
 4. `SKILL.md` 里的"绝对禁止"和"通用规则"按你的项目需求调整
 
