@@ -1,5 +1,25 @@
 # Changelog
 
+## v1.1.0 (2026-05-26)
+
+### 新增
+
+- **独立 Slash 命令**：七个模式现在可以通过 `/ew:write`、`/ew:revise`、`/ew:check` 等命令直接调用，无需先唤起主 skill
+  - `/ew:scaffold` — 脚手架搭建
+  - `/ew:write` — 初稿写作
+  - `/ew:revise` — 修订去AI味
+  - `/ew:check` — 跨篇一致性检查
+  - `/ew:deconstruct` — 拆文分析
+  - `/ew:expand` — 场景扩写
+  - `/ew:illustrate` — 插图提示词生成
+
+### 改进
+
+- `install.sh` 现在会同时安装 slash 命令到 `~/.claude/commands/ew/`
+- README 更新文件结构和命令说明
+
+---
+
 ## v1.0.0 (2026-05-26)
 
 首次发布。

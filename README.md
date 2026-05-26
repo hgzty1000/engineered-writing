@@ -17,23 +17,38 @@
 - 多篇章/系列连载（共享人物和世界观）
 - 任何需要"先搭脚手架再写作"的长篇项目
 
-## 六个模式
+## 七个模式
+
+每个模式都是独立的 slash 命令（Claude Code 用 `ew:` 命名空间避免污染全局命令名）：
 
 | 命令 | 模式 | 用途 |
 |------|------|------|
-| `/scaffold` | 脚手架 | 整理人物小传、写 CONTEXT、写提示词 |
-| `/write` | 写作 | 写初稿，自动回查文档 + 写后自检 |
-| `/revise` | 修订 | 去AI味诊断 + 逐段修订 |
-| `/check` | 跨篇检查 | 扫描所有篇章找冲突 |
-| `/deconstruct` | 拆文分析 | 拆解别人的文章，提取可迁移技法 |
-| `/expand` | 场景扩写 | 把场景锚点展开为完整叙事 |
-| `/illustrate` | 插图提示词 | 为场景生成"手机随手拍"风格的图片提示词 |
+| `/ew:scaffold` | 脚手架 | 整理人物小传、写 CONTEXT、写提示词 |
+| `/ew:write` | 写作 | 写初稿，自动回查文档 + 写后自检 |
+| `/ew:revise` | 修订 | 去AI味诊断 + 逐段修订 |
+| `/ew:check` | 跨篇检查 | 扫描所有篇章找冲突 |
+| `/ew:deconstruct` | 拆文分析 | 拆解别人的文章，提取可迁移技法 |
+| `/ew:expand` | 场景扩写 | 把场景锚点展开为完整叙事 |
+| `/ew:illustrate` | 插图提示词 | 为场景生成"手机随手拍"风格的图片提示词 |
+
+也可以直接调用 skill 本身（`@engineered-writing` 或自然语言"写第三节"），由 skill 内部路由到对应模式。
+
+> 其他平台（Cursor / Windsurf / Cline / ChatGPT Projects）没有 slash 命令机制，通过自然语言触发关键词进入对应模式（"写"、"改"、"扩写"、"检查一致性"等）。
 
 ## 文件结构
 
 ```
 engineered-writing/
 ├── SKILL.md                        # 主规则文件（工作流定义）
+├── commands/
+│   └── ew/                         # Claude Code slash 命令
+│       ├── scaffold.md
+│       ├── write.md
+│       ├── revise.md
+│       ├── check.md
+│       ├── deconstruct.md
+│       ├── expand.md
+│       └── illustrate.md
 ├── references/
 │   ├── voice-calibration.md        # 语感校准（余华/史铁生/莫言三档）
 │   ├── pov-discipline.md           # 视角纪律（严格外部视角）

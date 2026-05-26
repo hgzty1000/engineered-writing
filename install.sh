@@ -34,6 +34,15 @@ copy_skill() {
     chmod +x "$dest/scripts/"*.sh 2>/dev/null || true
 }
 
+# 复制 slash commands
+copy_commands() {
+    local dest="$1"
+    if [ -d "$SCRIPT_DIR/commands/ew" ]; then
+        mkdir -p "$dest/ew"
+        cp "$SCRIPT_DIR/commands/ew/"*.md "$dest/ew/"
+    fi
+}
+
 # 生成合并版（所有文件合并为一个 markdown）
 generate_merged() {
     local output="${1:-$SCRIPT_DIR/engineered-writing-merged.md}"
@@ -58,12 +67,15 @@ generate_merged() {
 # Claude Code 安装
 install_claude() {
     local dest="$HOME/.claude/skills/$SKILL_NAME"
+    local cmd_dest="$HOME/.claude/commands"
     if [ -d "$dest" ]; then
         warn "已存在: $dest（将覆盖）"
     fi
     copy_skill "$dest"
+    copy_commands "$cmd_dest"
     ok "已安装到 Claude Code: $dest"
-    info "重启 Claude Code 后生效。使用 /write、/revise、/check 等命令触发。"
+    ok "Slash commands 已安装到: $cmd_dest/ew/"
+    info "重启 Claude Code 后生效。使用 /ew:write、/ew:revise、/ew:check 等命令触发。"
 }
 
 # Cursor 安装
